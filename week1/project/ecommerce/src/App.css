@@ -17,10 +17,14 @@
     list-style: none;
 }
 .product-item {
-    max-width: 200px;
+    max-width: 300px;
     margin: 20px;
 }
 img {
+    margin-bottom: auto;
+    margin-top: auto;
+    max-height: 300px;
+    object-fit: contain;
     width: 100%;
 }
 @media (max-width: 400px) {
