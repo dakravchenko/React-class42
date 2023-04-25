@@ -3,19 +3,20 @@ import React, {useState} from "react";
 import allCategories from "./fake-data/all-categories";
 import allProducts from "./fake-data/all-products"
 import Category from "./Category";
-import Product from "./Product";
+import Products from './Products';
 
 function App() {
-  const [id, setId] = useState(null)
+  const [categoryId, setCategoryId] = useState(null)
 
-  function selectCategory(id){
-
+  function selectCategory(e){
+    const categoryId = e.target.id
+    setCategoryId(categoryId);
   }
   return (
     <div className="App">
       <h1>Products</h1>
-      <Category selectCategory={selectCategory}/>
-      <Product/>
+      <Category selectCategory={selectCategory} categoryId={categoryId} setCategoryId={setCategoryId}/>
+      <Products selectedCategoryId={categoryId}/>
     </div>
   );
 }
