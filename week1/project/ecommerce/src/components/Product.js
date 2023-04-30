@@ -1,11 +1,12 @@
 import React from 'react'
-import products from './fake-data/all-products'
-import ProductsItem  from './ProductsItem.js'
+import products from '../fake-data/all-products'
+import ProductsItem  from '../components/ProductsItem'
+import '../components/Product.css'
 
-export default function Products({ selectedCategoryId}) {
+export default function Product({ selectedCategoryId}) {
   return (
     <div className='products-container'>
-      {products.map((product) => {
+      {products.map((product) => { 
         let categoryId;
         switch (product.category) {
           case 'electronics':

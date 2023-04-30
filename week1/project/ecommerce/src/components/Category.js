@@ -1,7 +1,9 @@
 import React, {useState} from 'react'
-import categories from "./fake-data/all-categories.js";
+import categories from "../fake-data/all-categories.js";
+import '../components/Category.css'
 
-export default function Category({selectCategory, categoryId}) {
+
+export default function Category({selectCategory}) {
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(null);
   return (
     <div className='category-container'>
