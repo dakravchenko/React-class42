@@ -3,17 +3,21 @@ import Category from '../components/Category.js';
 import Product from '../components/Product.js'
 
 export default function Products() {
-    const [categoryId, setCategoryId] = useState(null)
+    const [category, setCategory] = useState('all categories')
 
     function selectCategory(e){
-      const categoryId = e.target.id
-      setCategoryId(categoryId);
+      const category = e.target.textContent //now I grab a text content instead of id
+      setCategory(category);
+      if(e.target.className === 'category-btn selected'){
+        setCategory('all categories')
+      }
+
     }
     return (
       <div className="App">
         <h1>Products</h1>
-        <Category selectCategory={selectCategory} categoryId={categoryId} setCategoryId={setCategoryId}/>
-        <Product selectedCategoryId={categoryId}/>
+        <Category selectCategory={selectCategory} />
+        <Product selectedCategory={category}/>
       </div>
     );
   }
