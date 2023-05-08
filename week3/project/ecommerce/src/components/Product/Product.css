@@ -1,0 +1,15 @@
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.products-item {
+    max-width: 300px;
+    margin: 20px;
+}
+img {
+    margin-bottom: auto;
+    margin-top: auto;
+    max-height: 300px;
+    object-fit: contain;
+    width: 100%;
+}
