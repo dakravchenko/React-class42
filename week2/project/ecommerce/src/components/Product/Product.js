@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import ProductsItem from '../components/ProductsItem.js';
+import ProductsItem from '../Product/ProductsItem.js';
 import { Link } from 'react-router-dom';
-import '../components/Product.css'
+import '../Product/Product.css'
 
 export default function Products({ selectedCategory }){
   const [productsList, setProductsList] = useState([]);
@@ -14,7 +14,6 @@ export default function Products({ selectedCategory }){
         try {
           const res = await fetch('https://fakestoreapi.com/products');
           const productsAll = await res.json();
-          console.log(productsAll)
           setProductsList(productsAll);
         } catch (e) {
           alert('Error: ' + e.message);
@@ -43,9 +42,8 @@ export default function Products({ selectedCategory }){
         <div className='products-container'>
           {productsList.map(product => {
             return (
-              <div className='products-item'>
+              <div key={product.id} className='products-item'>
               <Link
-                key={product.id}
                 className='product'
                 to={`/product/${product.id}`}
               >

@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
-import Category from '../components/Category.js';
-import Product from '../components/Product.js'
+import Category from '../components/Category/Category.js'
+import Product from '../components/Product/Product.js'
 
 export default function Products() {
     const [category, setCategory] = useState('all categories')

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import '../components/Category.css'
+import '../Category/Category.css'
 
 
 export default function Category({selectCategory}) {

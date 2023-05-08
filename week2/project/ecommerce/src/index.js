@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import App from './App';
-import ProductCard from './components/ProductCard.js';
+import ProductCard from './components/Product/ProductCard.js';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
