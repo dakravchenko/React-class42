@@ -1,61 +1,37 @@
-import { useEffect, useState } from 'react';
-import ProductsItem from '../Product/ProductsItem.js';
+import { useContext } from 'react';
+import { ProductsItem } from './ProductsItem';
 import { Link } from 'react-router-dom';
-import '../Product/Product.css'
+import { GlobalContext } from '../../context/GlobalState';
+import { useFetch } from '../../customHook/useFetch';
 
-export default function Products({ selectedCategory }){
-  const [productsList, setProductsList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+export const Product = () => {
+  const { selectedCategory } = useContext(GlobalContext);
 
-  useEffect(() => {
-    const getCategories = async () => {
-      setIsLoading(true);
-      if (selectedCategory === 'all categories') {
-        try {
-          const res = await fetch('https://fakestoreapi.com/products');
-          const productsAll = await res.json();
-          console.log(productsAll)
-          setProductsList(productsAll);
-        } catch (e) {
-          alert('Error: ' + e.message);
-        }
-      } else {
-        try {
-          const res = await fetch(
-            `https://fakestoreapi.com/products/category/${selectedCategory}`
-          );
-          const productsByCategory = await res.json();
-          setProductsList(productsByCategory);
-          console.log(productsByCategory)
-        } catch (e) {
-          alert('Error: ' + e.message);
-        }
-      }
-      setIsLoading(false);
-    };
-    getCategories();
-  }, [selectedCategory]);
+  const url =
+    selectedCategory === 'all'
+      ? 'https://fakestoreapi.com/products'
+      : `https://fakestoreapi.com/products/category/${selectedCategory}`;
+  let [isLoading, products] = useFetch(url, selectedCategory);
+
   return (
-    <div>
+    <>
       {isLoading ? (
         <div>Loading...</div>
       ) : (
-        <div className='products-container'>
-          {productsList.map(product => {
+        <ul className='products'>
+          {products.map(product => {
             return (
-              <div className='products-item'>
               <Link
                 key={product.id}
-                className='product'
+                className='products--item'
                 to={`/product/${product.id}`}
               >
                 <ProductsItem product={product} />
               </Link>
-              </div>
             );
           })}
-        </div>
+        </ul>
       )}
-    </div>
+    </>
   );
 };
